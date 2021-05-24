@@ -49,7 +49,7 @@
                             <a href="/contacts" @click="CloseForms()">Контакты</a>
                         </div>
                         <div class="row">
-                            <a v-for="item of cources" :key="item.key" href="#">{{ item.title }}</a>
+                            <a v-for="item of courses" :key="item.key" href="#">{{ item.title }}</a>
                         </div>
                         <div class="row">
                             <a href="https://www.instagram.com/wepro.uz/" target="_blank">Instagram</a>

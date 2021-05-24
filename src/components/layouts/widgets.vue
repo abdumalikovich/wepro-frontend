@@ -1,16 +1,16 @@
 <template>
     <div class="widget">
         <transition name="menu-animation">
-            <div class="menu" v-if="Form.Menu" @keydown.esc="something_in_your_methods">
-                <a href="#menu" class="close-menu" @click="CloseForms()"></a>
+            <div v-if="Form.Menu" class="menu" @keydown.esc="something_in_your_methods">
+                <a class="close-menu" href="#menu" @click="CloseForms()"></a>
                 <div class="wrapper menu-links">
-                    <a @click="CloseForms()" target="_blank" href="https://madad.studio">Студия Madad</a>
-                    <a @click="CloseForms()" href="/#courses">Курсы</a>
-                    <a @click="CloseForms()" href="/#reviews">Видеоотзывы</a>
-                    <a @click="CloseForms(), OpenForm('Application')" href="#">Начать учиться</a>
-                    <a @click="CloseForms()" target="_blank" href="https://t.me/weprouz_bot">Телеграм-блог</a>
+                    <a href="https://madad.studio" target="_blank" @click="CloseForms()">Студия Madad</a>
+                    <a href="/#courses" @click="CloseForms()">Курсы</a>
+                    <a href="/#reviews" @click="CloseForms()">Видеоотзывы</a>
+                    <a href="#" @click="CloseForms(), OpenForm('Application')">Начать учиться</a>
+                    <a href="https://t.me/weprouz_bot" target="_blank" @click="CloseForms()">Телеграм-блог</a>
                     <!-- <a @click="CloseForms()" href="/job">Работа в Wepro</a> -->
-                    <a @click="CloseForms()" href="/students">Работы студентов</a>
+                    <a href="/students" @click="CloseForms()">Работы студентов</a>
                     <!-- <a @click="CloseForms()" href="/contacts">Контакты</a> -->
                 </div>
                 <div class="footer">
@@ -21,31 +21,32 @@
                         </div>
                     </div>
                     <div class="side right-side t-20 menu-social">
-                        <a target="_blank" href="https://www.instagram.com/wepro.uz/">Instagram</a>
-                        <a target="_blank" href="https://t.me/weprouz">Telegram</a>
-                        <a target="_blank" href="https://www.tiktok.com/">TikTok</a>
-                        <a target="_blank" href="https://www.youtube.com/channel/UCF2_hjZ9xENm01x4gPoLakg">YouTube</a>
-                        <a target="_blank" href="https://www.facebook.com/wepro.uz">Facebook</a>
+                        <a href="https://www.instagram.com/wepro.uz/" target="_blank">Instagram</a>
+                        <a href="https://t.me/weprouz" target="_blank">Telegram</a>
+                        <a href="https://www.tiktok.com/" target="_blank">TikTok</a>
+                        <a href="https://www.youtube.com/channel/UCF2_hjZ9xENm01x4gPoLakg" target="_blank">YouTube</a>
+                        <a href="https://www.facebook.com/wepro.uz" target="_blank">Facebook</a>
                         <!-- <a href="#">Behance</a> -->
                     </div>
                 </div>
             </div>
         </transition>
         <transition name="bottom-top">
-            <div class="widget-def widget-video" v-if="Form.Video">
-                <iframe src="https://www.youtube.com/embed/sffj_Y1arJI?autoplay=1&mute=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div v-if="Form.Video" class="widget-def widget-video">
+                <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"
+                        src="https://www.youtube.com/embed/sffj_Y1arJI?autoplay=1&mute=1&loop=1" title="YouTube video player"></iframe>
             </div>
         </transition>
         <transition name="bottom-top">
-            <div class="widget-def widget-success" v-if="Form.Success">
+            <div v-if="Form.Success" class="widget-def widget-success">
                 <div class="close" @click="CloseForms()">
-                    <img src="@/assets/img/vector/close-b.svg" alt="">
+                    <img alt="" src="@/assets/img/vector/close-b.svg">
                 </div>
-				<div class="heading">
-					<span class="h4">Спасибо. Мы получили заявку и ответим тебе в течение дня!</span>
-				</div>
+                <div class="heading">
+                    <span class="h4">Спасибо. Мы получили заявку и ответим тебе в течение дня!</span>
+                </div>
                 <div class="wrapper">
-					<p class="t-20 bolder">Что дальше?</p>
+                    <p class="t-20 bolder">Что дальше?</p>
                     <ul>
                         <li class="note">Мы позвоним тебе и уточним когда можно будет подойти в центр</li>
                         <li class="note">Ответим на все имеющиеся у тебя вопросы</li>
@@ -61,18 +62,18 @@
             </div>
         </transition>
         <transition name="bottom-top">
-            <div class="widget-def widget-success" v-if="Error.Status">
+            <div v-if="Error.Status" class="widget-def widget-success">
                 <div class="close" @click="CloseForms()">
-                    <img src="@/assets/img/vector/close-b.svg" alt="">
+                    <img alt="" src="@/assets/img/vector/close-b.svg">
                 </div>
-				<div class="heading">
-					<span class="h2">{{ Error.Text }}</span>
-				</div>
+                <div class="heading">
+                    <span class="h2">{{ Error.Text }}</span>
+                </div>
                 <div class="wrapper">
-					<a href="tel:+998 90 197 71-00">
+                    <a href="tel:+998 90 197 71-00">
                         <p class="t-20">Пожалуйста, попробуйте еще раз или перезвоните по номеру <b class="blue">+998 90 197 71-00</b></p>
                     </a>
-                    
+
                     <div class="btns">
                         <button @click="CloseForms()">Закрыть</button>
                     </div>
@@ -80,28 +81,25 @@
             </div>
         </transition>
         <transition name="bottom-top">
-            <div class="widget-def widget-application" v-if="Form.Application">
+            <div v-if="Form.Application" class="widget-def widget-application">
                 <div class="close" @click="CloseForms()">
-                    <img src="@/assets/img/vector/close-b.svg" alt="">
+                    <img alt="" src="@/assets/img/vector/close-b.svg">
                 </div>
-                <form class="vertical" @submit="Add({service: 'Applications'})">
+                <form class="vertical">
                     <div class="heading">
                         <span class="h2">Записаться на курс</span>
                     </div>
-                    <input type="text" name="time" hidden :value="new Date().toLocaleTimeString()">
-                    <input type="text" name="date" hidden :value="new Date().toLocaleDateString()">
-
                     <label>
                         Ваше имя
-                        <input name="name" class="white" type="text" placeholder="Введите свое имя">
+                        <input v-model.trim="form.name" class="white" name="name" placeholder="Введите свое имя" type="text">
                     </label>
                     <label>
                         Введите номер телефона
-                        <input type="phone" name="phone" v-model="form.phone" class="white">
+                        <input v-model="form.phone" class="white" name="phone" type="phone">
                     </label>
                     <label>
                         Выберите курс
-                        <select name="course" class="white">
+                        <select v-model="form.course" class="white" name="course">
                             <option value="">Программирование</option>
                             <option value="">Дизайн</option>
                             <option value="">Маркетинг</option>
@@ -109,39 +107,39 @@
                     </label>
                     <label>
                         Предпочитаемый язык обучения
-                        <select name="language" class="white">
+                        <select v-model="form.language" class="white" name="language">
                             <option value="russian">На русском языке</option>
                             <option value="uzbek">Ozbek tilida</option>
                         </select>
                     </label>
                     <div class="doc">
-                        <button :disabled="form.phone.length <= 10">Отправить заявку</button>
+                        <button :disabled="form.phone.length <= 10" @click.prevent="submit">Отправить заявку</button>
                         <p>Нажимая на кнопку, я соглашаюсь на обработку персональных данных</p>
                     </div>
                 </form>
             </div>
-            <div class="widget-def widget-application" v-if="Form.FreeLesson">
+            <div v-if="Form.FreeLesson" class="widget-def widget-application">
                 <div class="close" @click="CloseForms()">
-                    <img src="@/assets/img/vector/close-b.svg" alt="">
+                    <img alt="" src="@/assets/img/vector/close-b.svg">
                 </div>
                 <form class="vertical" @submit="Add({service: 'FreeLesson'})">
                     <div class="heading">
                         <span class="h2">Посетить бесплатный урок</span>
                     </div>
-                    <input type="text" name="time" hidden :value="new Date().toLocaleTimeString()">
-                    <input type="text" name="date" hidden :value="new Date().toLocaleDateString()">
+                    <input :value="new Date().toLocaleTimeString()" hidden name="time" type="text">
+                    <input :value="new Date().toLocaleDateString()" hidden name="date" type="text">
 
                     <label>
                         Ваше имя
-                        <input name="name" class="white" type="text" placeholder="Введите свое имя">
+                        <input class="white" name="name" placeholder="Введите свое имя" type="text">
                     </label>
                     <label>
                         Введите номер телефона
-                        <input type="phone" name="phone" v-model="form.phone" class="white">
+                        <input v-model="form.phone" class="white" name="phone" type="phone">
                     </label>
                     <label>
                         Выберите курс
-                        <select name="course" class="white">
+                        <select class="white" name="course">
                             <option value="">Программирование</option>
                             <option value="">Дизайн</option>
                             <option value="">Маркетинг</option>
@@ -159,24 +157,34 @@
 
 <script>
 // import InputMask from 'vue-input-mask';
-import { mapActions, mapGetters } from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
     data() {
         return {
             form: {
                 phone: '+998 '
-            }      
+            }
         }
     },
-	computed: {
-		...mapGetters([
-			'Form',
-			'Error',
-			'AllData',
-		])
-	},
-	methods: {
+    computed: {
+        ...mapGetters([
+            'Form',
+            'Error',
+            'AllData',
+        ])
+    },
+    methods: {
+        submit() {
+            let data = Object.assign({}, this.form)
+            data.date = new Date().toLocaleDateString()
+            data.time = new Date().toLocaleTimeString()
+            this.createApplication(data).then(() => {
+                this.CloseForms()
+            })
+        },
+
+        ...mapActions('applications', {createApplication: 'create'}),
         ...mapActions([
             'Add',
             'OpenForm',
