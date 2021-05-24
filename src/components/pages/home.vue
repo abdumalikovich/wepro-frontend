@@ -83,7 +83,7 @@
 			</div>
 			<div class="wrapper">
 				<div class="items list-4">
-					<iframe v-for="item of AllData.Review" :key="item.key" :src="item.video + '?autoplay=1&mute=1&loop=1'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe v-for="item of reviews" :key="item.key" :src="item.video + '?autoplay=1&mute=1&loop=1'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
 			<!-- <div @click="ShowGallery = !ShowGallery" class="down t-20" v-if="!ShowGallery">Больше отзывов</div> -->
@@ -293,13 +293,20 @@ export default {
 	},
 	created() {
 		this.GetData()
+		this.fetchReviews().then(console.log)
 	},
 	computed: {
 		...mapGetters([
 			'AllData'
-		])
+		]),
+		...mapGetters('reviews', {'findReviewsInStore': 'find'}),
+
+		reviews() {
+			return this.findReviewsInStore({}).data
+		}
 	},
 	methods: {
+		...mapActions('reviews', {fetchReviews: 'find'}),
 		...mapActions([
 			'OpenForm',
 			'GetData',
