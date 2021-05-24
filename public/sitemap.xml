@@ -1,0 +1,37 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>https://wepro.uz/</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/frontend</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/smm</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/graphic-design</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/web-design</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/3ds-max</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://wepro.uz/course/python</loc>
+        <lastmod>2021-05-23T14:51:57+00:00</lastmod>
+        <priority>0.8</priority>
+    </url>
+</urlset>
