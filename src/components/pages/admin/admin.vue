@@ -150,8 +150,8 @@
 					<td>128</td>
 					<td>
                         <div class="sorting">
-                            <button class="icon"><img src="../../../../public/img/vector/trash-2.svg"></button>
-                            <button class="icon"><img src="../../../../public/img/vector/x-octagon.svg"></button>
+                            <button class="icon"><img src="@/assets/img/vector/trash-2.svg"></button>
+                            <button class="icon"><img src="@/assets/img/vector/x-octagon.svg"></button>
                         </div>
 					</td>
 				</tr>

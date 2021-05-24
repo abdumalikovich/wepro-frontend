@@ -23,7 +23,7 @@ const routes = [
 	{
 		name: 'studends',
 		path: '/studends',
-		component: () => import('../components/pages/studends')
+		component: () => import('../components/pages/students')
 	},
 	{
 		name: 'admin',

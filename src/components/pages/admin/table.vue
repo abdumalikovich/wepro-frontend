@@ -34,7 +34,7 @@
                         <transition name="fade">
                             <div v-if="current_active === item.id" class="change def-widget-small">
                                 <div class="close" @click="change_status(null)">
-                                    <img src="../../../../public/img/vector/close-b.svg" alt="">
+                                    <img src="@/assets/img/vector/close-b.svg" alt="">
                                 </div>
 
                                 <span class="new" @click="Change({service: 'Applications', id: item.id, data: {status: 'new'}})">Новая заявка</span>
@@ -46,8 +46,8 @@
                     </td>
                     <td>
                         <div class="sorting">
-                            <img src="../../../../public/img/vector/trash-2.svg">
-                            <img src="../../../../public/img/vector/info.svg">
+                            <img src="@/assets/img/vector/trash-2.svg">
+                            <img src="@/assets/img/vector/info.svg">
                         </div>
                     </td>
                 </tr>

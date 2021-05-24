@@ -9,7 +9,7 @@
             </div> -->
         </div>
         <div class="wrapper list-3">
-            <a target="_blank" :href="'course/' + item.link" v-for="item of AllData.Course" :key="item.key">
+            <a v-for="item of courses" :key="item.key" :href="'course/' + item.link" target="_blank">
                 <div class="item">
                     <div class="inside">
                         <div class="title">
@@ -17,7 +17,7 @@
                             <span class="h4">Месяцев: {{ item.number_month }}, занятий: {{ item.number_lessons }}</span>
                         </div>
                         <ul class="check">
-                            <li class="note" v-for="el of item.unique_data.array_what_can" :key="el.key">{{ el.name }}</li>
+                            <li v-for="el of item.unique_data.array_what_can" :key="el.key" class="note">{{ el.name }}</li>
                         </ul>
 
                         <span class="h3">{{ item.price.slice(0, 3) + '.' + item.price.slice(3) }}</span>
@@ -30,20 +30,21 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
-	computed: {
-		...mapGetters([
-			'AllData'
-		])
-	},
-	methods: {
-		...mapActions([
-		])
-	},
-	created() {
-	},
+    computed: {
+        ...mapGetters('courses', {'findCoursesInStore': 'find'}),
+
+        courses() {
+            return this.findCoursesInStore({}).data
+        }
+    },
+    methods: {
+        ...mapActions([])
+    },
+    created() {
+    },
 }
 </script>
 

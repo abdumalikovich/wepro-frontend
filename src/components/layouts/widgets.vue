@@ -2,16 +2,16 @@
     <div class="widget">
         <transition name="menu-animation">
             <div class="menu" v-if="Form.Menu" @keydown.esc="something_in_your_methods">
-                <a href="#menu" class="close-menu" @click="СloseForms()"></a>
+                <a href="#menu" class="close-menu" @click="CloseForms()"></a>
                 <div class="wrapper menu-links">
-                    <a @click="СloseForms()" target="_blank" href="https://madad.studio">Студия Madad</a>
-                    <a @click="СloseForms()" href="/#courses">Курсы</a>
-                    <a @click="СloseForms()" href="/#reviews">Видеоотзывы</a>
-                    <a @click="СloseForms(), OpenForm('Application')" href="#">Начать учиться</a>
-                    <a @click="СloseForms()" target="_blank" href="https://t.me/weprouz_bot">Телеграм-блог</a>
-                    <!-- <a @click="СloseForms()" href="/job">Работа в Wepro</a> -->
-                    <a @click="СloseForms()" href="/students">Работы студентов</a>
-                    <!-- <a @click="СloseForms()" href="/contacts">Контакты</a> -->
+                    <a @click="CloseForms()" target="_blank" href="https://madad.studio">Студия Madad</a>
+                    <a @click="CloseForms()" href="/#courses">Курсы</a>
+                    <a @click="CloseForms()" href="/#reviews">Видеоотзывы</a>
+                    <a @click="CloseForms(), OpenForm('Application')" href="#">Начать учиться</a>
+                    <a @click="CloseForms()" target="_blank" href="https://t.me/weprouz_bot">Телеграм-блог</a>
+                    <!-- <a @click="CloseForms()" href="/job">Работа в Wepro</a> -->
+                    <a @click="CloseForms()" href="/students">Работы студентов</a>
+                    <!-- <a @click="CloseForms()" href="/contacts">Контакты</a> -->
                 </div>
                 <div class="footer">
                     <div class="side elements-pc side-left bolder menu-footer">
@@ -38,8 +38,8 @@
         </transition>
         <transition name="bottom-top">
             <div class="widget-def widget-success" v-if="Form.Success">
-                <div class="close" @click="СloseForms()">
-                    <img src="../../../public/img/vector/close-b.svg" alt="">
+                <div class="close" @click="CloseForms()">
+                    <img src="@/assets/img/vector/close-b.svg" alt="">
                 </div>
 				<div class="heading">
 					<span class="h4">Спасибо. Мы получили заявку и ответим тебе в течение дня!</span>
@@ -55,15 +55,15 @@
                     <p class="note t-black">Обычно, мы отвечаем в течение дня. До встречи у нас, твой «Wepro» :)</p>
 
                     <div class="btns">
-                        <button @click="СloseForms()">Закрыть</button>
+                        <button @click="CloseForms()">Закрыть</button>
                     </div>
                 </div>
             </div>
         </transition>
         <transition name="bottom-top">
             <div class="widget-def widget-success" v-if="Error.Status">
-                <div class="close" @click="СloseForms()">
-                    <img src="../../../public/img/vector/close-b.svg" alt="">
+                <div class="close" @click="CloseForms()">
+                    <img src="@/assets/img/vector/close-b.svg" alt="">
                 </div>
 				<div class="heading">
 					<span class="h2">{{ Error.Text }}</span>
@@ -74,15 +74,15 @@
                     </a>
                     
                     <div class="btns">
-                        <button @click="СloseForms()">Закрыть</button>
+                        <button @click="CloseForms()">Закрыть</button>
                     </div>
                 </div>
             </div>
         </transition>
         <transition name="bottom-top">
             <div class="widget-def widget-application" v-if="Form.Application">
-                <div class="close" @click="СloseForms()">
-                    <img src="../../../public/img/vector/close-b.svg" alt="">
+                <div class="close" @click="CloseForms()">
+                    <img src="@/assets/img/vector/close-b.svg" alt="">
                 </div>
                 <form class="vertical" @submit="Add({service: 'Applications'})">
                     <div class="heading">
@@ -121,8 +121,8 @@
                 </form>
             </div>
             <div class="widget-def widget-application" v-if="Form.FreeLesson">
-                <div class="close" @click="СloseForms()">
-                    <img src="../../../public/img/vector/close-b.svg" alt="">
+                <div class="close" @click="CloseForms()">
+                    <img src="@/assets/img/vector/close-b.svg" alt="">
                 </div>
                 <form class="vertical" @submit="Add({service: 'FreeLesson'})">
                     <div class="heading">
@@ -181,7 +181,7 @@ export default {
             'Add',
             'OpenForm',
             'ShowForm',
-            'СloseForms',
+            'CloseForms',
         ])
     },
     components: {

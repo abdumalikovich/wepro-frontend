@@ -18,7 +18,7 @@
 		"feathers-hooks-common": "^5.0.6",
 		"feathers-vuex": "^3.16.0",
 		"node-sass": "^5.0.0",
-		"sass-loader": "^11.0.1",
+		"sass-loader": "10.1.1",
 		"socket.io-client": "2.4.0",
 		"vue": "^2.6.11",
 		"vue-chartjs": "^3.5.0",
