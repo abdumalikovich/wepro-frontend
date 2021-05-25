@@ -21,16 +21,16 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
-	methods: {
-		...mapActions([
-			'OpenForm',
-			'GetData',
-			'Add'
-		])
-	},
-	props: ['dark']
+    methods: {
+        ...mapActions([
+            'OpenForm',
+            'GetData',
+            'Add'
+        ])
+    },
+    props: ['dark']
 }
 </script>

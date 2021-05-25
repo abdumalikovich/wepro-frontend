@@ -155,7 +155,7 @@ export default new Vuex.Store({
 
 			commit('ShowForm')
 		},
-		async СloseForms({ commit, dispatch }) {
+		async CloseForms({ commit, dispatch }) {
 			commit('СloseForms')
 		},
 		async OpenForm({ commit, dispatch }, data) {
