@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
 	publicPath: '/',
 	filenameHashing: false,
-	outputDir: path.resolve(__dirname, '../server/public'),
+	outputDir: path.resolve(__dirname, '../feathers/public'),
 	devServer: {
 		proxy: 'http://localhost:3001'
 	},
