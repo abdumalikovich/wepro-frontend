@@ -12,6 +12,7 @@
 		</div>
 		<div class="side side-right">
 			<div class="links">
+				<a href="#">Ozbek tili</a>
 				<a href="tel:+998 90 197-71-00">+998 90 197-71-00</a>
 			</div>
 			<a href="#menu" @click="OpenForm('Menu')" class="open-menu"></a>

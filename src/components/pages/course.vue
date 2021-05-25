@@ -74,9 +74,9 @@
                     <span class="h4">Преподаватель курса</span>
                 </div>
                 <div class="wrapper">
-                    <div class="teacher" v-if="CourseItem.teacher">
+                    <div class="person-element" v-if="CourseItem.teacher">
                         <img v-if="CourseItem.teacher.files" class="cover" :src="proxy + '/' + CourseItem.teacher.files[0].path" alt="Преподаватель курса">
-                        <div>
+                    <div>
                             <span class="h3">{{CourseItem.teacher.name}}</span>
                             <span class="note">{{CourseItem.teacher.description}}</span>
                         </div>

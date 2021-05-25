@@ -3,7 +3,7 @@
 		<layoutHeader/>
 
 		<div class="screen-one">
-			<div class="wrapper">
+			<div class="wrapper def-block">
 				<div class="side-left">
 					<!-- {{proxy}} -->
 					<h1 class="elements-mobile">Учим IT-профессиям. Программирование, дизайн и маркетинг.</h1>
