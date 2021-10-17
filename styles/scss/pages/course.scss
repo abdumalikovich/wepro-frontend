@@ -59,6 +59,9 @@
 					margin-bottom: 24px;
 				}
 			}
+			.person-element {
+				margin-bottom: 12px;
+			}
 		}
 		.screen-programms {
 			.wrapper {
@@ -172,6 +175,16 @@
 			.side-right {
 				max-width: 600px;
 				height: 300px;
+			}
+		}
+	}
+	@media only screen and (max-width: 650px) {
+		.screen-one .wrapper {
+			.side-right {
+				height: 190px;	
+				iframe {
+					width: 100%;
+				}
 			}
 		}
 	}

@@ -4,32 +4,30 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import router from './router'
 import store from './store'
-import InputMask from 'vue-input-mask';
- 
-// import AOS from 'aos'
-// import 'aos/dist/aos.css'
 import VueMeta from 'vue-meta'
-// import Vuesax from 'vuesax'
+import i18n from './i18n'
 
-// import 'vuesax/dist/vuesax.css'
-
-// Vue.component('input-mask', InputMask)
-Vue.use(Vuex)
-Vue.use(VueRouter)
 Vue.use(VueMeta, {
-	// optional pluginOptions
 	refreshOnceOnNavigation: true
 })
-// Vue.use(Vuesax)
-// Vue.use(HighchartsVue)
 
 Vue.config.productionTip = false
+ 
+router.beforeEach((to, from, next) => {
+	let language = to.params.lang
+
+	// if (language == '') language = 'ru'
+
+	i18n.locale = language
+	next()
+})
 
 new Vue({
-	// created() {
-	// 	AOS.init()
-	// },
+	Vuex,
+	VueRouter,
 	router,
+
 	store,
-	render: h => h(App),
+	i18n,
+	render: h => h(App)
 }).$mount('#app')

@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
 	publicPath: '/',
 	filenameHashing: false,
-	outputDir: path.resolve(__dirname, '../feathers/public'),
+	outputDir: path.resolve(__dirname, '../server/public'),
 	devServer: {
 		proxy: 'http://localhost:3001'
 	},
@@ -12,8 +12,8 @@ module.exports = {
 			preloader: false
 		},
 		i18n: {
-			locale: 'ru',
-			fallbackLocale: 'ru',
+			locale: 'en',
+			fallbackLocale: 'en',
 			localeDir: 'locales',
 			enableInSFC: false
 		}

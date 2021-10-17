@@ -12,6 +12,7 @@ export default new Vuex.Store({
 			Course: false,
 			Application: false,
 			FreeLesson: false,
+			OpenLessons: false,
 			Test: false,
 			Success: false,
 			BlurredBg: false,
@@ -23,12 +24,16 @@ export default new Vuex.Store({
 			Text: 'Произошла ошибка'
 		},
 		AllData: {
+			Check: [],
 			Teacher: [],
 			Course: [],
 			Review: [],
 			Applications: [],
-			// : [],
-			// Review: [],
+			App_Presentations: [],
+			App_Vacancies: [],
+			Questions: [],
+			StudentsWorks: [],
+			Jobs: [],
 		}
 	},
 	getters: {
@@ -38,49 +43,47 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		async OpenForm(state, data) {
-			// document.body.style.overflowY = 'hidden'
+			document.body.style.overflowY = 'hidden'
 
-			state.Form[data] = true
+			state.Form[data[0]] = true
 			state.Form.BlurredBg = true
-			
-			if(data == 'Menu') {
+
+			if (data[0] == 'Menu') {
 				state.Form.BlurredBg = false
-				
+
 				setTimeout(() => {
 					let menu_elements_links = document.querySelector('.menu-links').children
 					let menu_elements_social = document.querySelector('.menu-social').children
 					let menu_elements_footer = document.querySelector('.menu-footer')
-	
+
 					let i = 0
 					let k = 0
-	
+
 					let show_elements_social_function = () => {
 						let show_elements_social = setInterval(() => {
 							menu_elements_social[k].classList.add('active')
 							k++
-		
-							if(k >= menu_elements_social.length) {
+
+							if (k >= menu_elements_social.length) {
 								clearInterval(show_elements_social)
 								clearInterval(show_elements_links)
-	
+
 								menu_elements_footer.classList.add('active')
 							}
 						}, 140)
 					}
-					
+
 					let show_elements_links = setInterval(() => {
 						menu_elements_links[i].classList.add('active')
 						i++
-	
-						if(i >= menu_elements_links.length && i) {
+
+						if (i >= menu_elements_links.length && i) {
 							clearInterval(show_elements_links)
 							show_elements_social_function()
 						}
 					}, 140)
 				}, 500)
 			}
-
-
 		},
 		async СloseForms(state) {
 			document.body.style.overflowY = 'scroll'
@@ -95,29 +98,59 @@ export default new Vuex.Store({
 		async ShowForm(state, data) {
 			state.Forms.Course = true
 		},
+		async GetCheck(state, data) {
+			state.AllData.Check = data
+		},
 		async GetData(state, data) {
 			state.AllData[data.service] = data.data
+			console.log(state.AllData[data.service])
 		},
-		async Change(state, data) {
+		async Patch(state, data) {
+			let id = data.doc.id
+			let find = this.state.AllData[data.service].filter(item => item.id == id)[0]
+			let idx = this.state.AllData[data.service].indexOf(find)
+			let item = this.state.AllData[data.service][idx]
 
+			for (let key in item) {
+				for (let new_key in Object.assign(data.doc)) {
+					if (key == new_key) {
+						item[key] = data.doc[new_key]
+					}
+				}
+			}
+
+			// this.state.AllData[data.service][idx] = Object.assign({}, this.state.AllData[data.service][idx], {name: 'Alex Adms'})
+
+			// this.state.AllData[data.service][idx] = {
+			// 	"_id" : "60ce28824c5c44421c2e4b34",
+			// 	"status" : "new",
+			// 	"deleted" : "true",
+			// 	"time" : "22:25:19",
+			// 	"date" : "19.06.2021",
+			// 	"name" : "Alex Adams",
+			// 	"phone" : "+998  12 312 31 23",
+			// 	"course" : "60b21aa3c77a48052087f46b",
+			// 	"language" : "russian",
+			// 	"__v" : 0
+			// }
+
+			// this.state.AllData[data.service][idx] = data.doc
 		},
 		async Add(state, data) {
 			for (let item in state.Form) {
 				state.Form[item] = false
 			}
 
-			console.log(data);
-
 			if (data.status == 200 && data.data.ok == true) {
 				state.Form.BlurredBg = true
 				state.Form.Success = true
 
-				// setTimeout(() => {
-				// 	state.Form.BlurredBg = false
-				// 	state.Form.Success = false
+				setTimeout(() => {
+					state.Form.BlurredBg = false
+					state.Form.Success = false
 
-				// 	document.body.style.overflowY = 'scroll'
-				// }, 3000)
+					document.body.style.overflowY = 'scroll'
+				}, 6000)
 			} else {
 				if (data == 'no_server') {
 					state.Form.BlurredBg = true
@@ -153,20 +186,18 @@ export default new Vuex.Store({
 
 			api.auth(formData)
 				.then(res => {
-					if (res.status == 200) {
+					if (res.status == 200 && res.data.ok && res.data.auth) {
 						let y1970 = new Date() / 1000
 						let adminExpires = y1970 + parseInt(res.data.adminExpires)
-		
-						localStorage.setItem('role', res.data.admin.role)
-						localStorage.setItem('adminToken', res.data.adminToken)
-						localStorage.setItem('adminExpires', adminExpires)
-		
-						router.push({name: 'admin'})
-	
-						console.log('SUCCESS ADMIN');
+
+						localStorage.setItem('role', 'admin')
+						localStorage.setItem('token', res.data.token)
+						localStorage.setItem('expires', adminExpires)
+
+						router.push({ name: 'admin' })
+
 						commit('Add', res)
 					} else {
-						console.log('FUCK U');
 						commit('Add', res)
 					}
 				})
@@ -188,14 +219,28 @@ export default new Vuex.Store({
 
 		// 	api.register(formData)
 		// 		.then(res => {
-		// 			console.log('HELLO WORLD')
 		// 		})
 		// 		.catch((error) => {
-		// 			console.log('ERROR')
 		// 		})
 		// },
-		async Change({ commit, dispatch }, data) {
-			console.log(data)
+		async Patch({ commit, dispatch }, data) {
+			event.preventDefault()
+
+			await api.patch(data)
+				.then(res => {
+					commit('Patch', res.data)
+				})
+				.catch((error) => {
+					let err_res = ''
+
+					if (error.response) {
+						commit('Add', err_res = 'no_response')
+					} else if (error.request) {
+						commit('Add', err_res = 'no_server')
+					} else {
+						commit('Add', err_res = 'server_error')
+					}
+				})
 		},
 		async Add({ commit, dispatch }, data) {
 			event.preventDefault()
@@ -218,6 +263,16 @@ export default new Vuex.Store({
 				formData.append('unique', JSON.stringify(unique))
 			}
 
+			if (data.service === 'Jobs') {
+				unique = {
+					array_responsibilities: data.unique.array_responsibilities,
+					array_requirements: data.unique.array_requirements,
+					array_offer: data.unique.array_offer
+				}
+
+				formData.append('unique', JSON.stringify(unique))
+			}
+
 			api.add(formData)
 				.then(res => {
 					commit('Add', res)
@@ -235,39 +290,57 @@ export default new Vuex.Store({
 				})
 		},
 		// GET DATA
-		async GetData({ commit, dispatch }, data) {
-			await api.GetData({ service: 'Course' })
+		async GetCheck({ commit, dispatch }, data) {
+			await api.GetCheck()
 				.then(async response => {
-					commit('GetData', response.data)
-
-					await api.GetData({ service: 'Review' })
-						.then(async response => {
-							commit('GetData', response.data)
-
-							await api.GetData({ service: 'Teacher' })
-								.then(async response => {
-									commit('GetData', response.data)
-								})
-						})
+					commit('GetCheck', response.data)
 				})
+		},
+		async GetData({ commit, dispatch }, data) {
+			for (let item of data) {
+				api.GetData({ service: item })
+					.then(async response => {
+						commit('GetData', response.data)
+					})
+			}
 		},
 		async GetDataAdmin({ commit, dispatch }, data) {
 			await api.GetData({ service: 'Applications' })
 				.then(async response => {
 					commit('GetData', response.data)
 
-					await api.GetData({ service: 'GetPresentation' })
+					await api.GetData({ service: 'App_Presentations' })
 						.then(async response => {
 							commit('GetData', response.data)
 
 							await api.GetData({ service: 'Questions' })
 								.then(async response => {
 									commit('GetData', response.data)
-									
+
 									await api.GetData({ service: 'FreeLesson' })
-									.then(async response => {
-										commit('GetData', response.data)
-									})
+										.then(async response => {
+											commit('GetData', response.data)
+
+											await api.GetData({ service: 'App_Vacancies' })
+												.then(async response => {
+													commit('GetData', response.data)
+
+													await api.GetData({ service: 'Jobs' })
+														.then(async response => {
+															commit('GetData', response.data)
+
+															await api.GetData({ service: 'Course' })
+																.then(async response => {
+																	commit('GetData', response.data)
+
+																	await api.GetData({ service: 'App_Presentations' })
+																		.then(async response => {
+																			commit('GetData', response.data)
+																		})
+																})
+														})
+												})
+										})
 								})
 						})
 				})

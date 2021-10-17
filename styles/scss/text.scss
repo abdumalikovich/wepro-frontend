@@ -46,6 +46,7 @@ h4, .h4 {
 	font-size: 25px;
 	line-height: 1.1;
 	font-weight: 500;
+	margin-bottom: 14px;
 }
 
 .t-corp {
@@ -90,20 +91,6 @@ p {
 }
 
 @media only screen and (max-width: 650px) {
-	.screen-one .wrapper {
-		padding-left: 28px!important;
-		padding-right: 28px!important;
-		padding-bottom: 200px;
-		.btns {
-			button:last-child {
-				display: none;
-			}
-		}
-	}
-	header {
-		left: 28px!important;
-		right: 28px!important;
-	}
 	br {
 		display: none !important;
 	}

@@ -1,14 +1,27 @@
 .body-home {
 	.screen-one {
-		background-color: var(--white);
+		background-color: #000;
 		.check {
 			margin-top: 45px;
 			margin-bottom: 45px;
 		}
-		background-image: url('../../public/img/pages/home/bg.webp');
+		background-image: url("../../public/img/pages/home/bg.jpg");
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: center bottom;
+	}
+	.screen-work {
+		.wrapper {
+			display: grid;
+			align-items: center;
+			grid-template-columns: repeat(5, 1fr);
+			grid-gap: 24px;
+			img {
+				width: 100%;
+				max-height: 100px;
+				object-fit: contain;
+			}
+		}
 	}
 	.screen-gallery {
 		img {
@@ -25,8 +38,18 @@
 	}
 	.screen-courses {
 		.item {
+			// position: relative;
+			// .bg {
+			// 	width: 100%;
+			// 	border-radius: 1.6rem!important;
+			// 	margin-bottom: 24px;
+			// 	// position: absolute;
+			// 	// left: 50%;
+			// 	// top: -60px;
+			// 	// transform: translateX(-50%);
+			// }
 			.title .h3 {
-				transition: .3s ease;
+				transition: 0.3s ease;
 			}
 			&:hover {
 				.title .h3 {
@@ -92,11 +115,11 @@
 		.wrapper {
 			.item {
 				padding: 23px 0;
-				border-top: 1px solid rgba(#8E9AA7, .37);
+				border-top: 1px solid rgba(#8e9aa7, 0.37);
 				cursor: pointer;
-				transition: .3s ease;
+				transition: 0.3s ease;
 				&:last-child {
-					border-bottom: 1px solid rgba(#8E9AA7, .37);
+					border-bottom: 1px solid rgba(#8e9aa7, 0.37);
 				}
 				.top {
 					display: flex;
@@ -114,7 +137,7 @@
 					overflow: hidden;
 					height: 0;
 					opacity: 0;
-					transition: .3s linear;
+					transition: 0.3s linear;
 					p {
 						padding-top: 12px;
 						padding-bottom: 30px;
@@ -143,11 +166,6 @@
 			margin-top: 35px;
 			margin-bottom: 35px;
 		}
-		header {
-			top: 30px;
-			left: 35px;
-			right: 35px
-		}
 		.screen-gallery {
 			img {
 				height: 560px;
@@ -159,7 +177,7 @@
 	}
 	@media only screen and (max-width: 650px) {
 		form {
-			grid-template-columns: repeat(auto-fill, minmax(166px, 100%))!important;
+			grid-template-columns: repeat(auto-fill, minmax(166px, 100%)) !important;
 		}
 		.screen-one {
 			background-image: none;
@@ -181,7 +199,6 @@
 		}
 	}
 }
-
 
 // .body-home {
 // 	.page-one {
@@ -853,7 +870,7 @@
 // 		display: flex;
 // 		justify-content: space-between;
 // 		// flex: 1 2;
-		
+
 // 	}
 // 	.side {
 // 		flex: 2;
@@ -909,6 +926,3 @@
 // 		}
 // 	}
 // }
-
-
-

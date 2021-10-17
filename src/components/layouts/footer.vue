@@ -6,24 +6,19 @@
 		<div class="screen-form black">
 			<div class="margin-small"></div>
 
-			<div class="def-block-small">
+			<div class="wrapper def-block-small padding-sides">
 				<div class="heading">
-					<span class="h2">Остались вопросы?</span>
-					<p>Мы перезвоним тебе и ответим на все оставшиеся вопросы.</p>
+					<span class="h2">{{$t('footer.h2')}}</span>
+					<p>{{$t('footer.p')}}</p>
 				</div>
 				<div class="wrapper">
-					<form @submit="Add({ service: 'GetPresentation' })">
+					<form @submit="Add({ service: 'Questions' })">
 						<input type="text" name="time" hidden :value="new Date().toLocaleTimeString()">
 						<input type="text" name="date" hidden :value="new Date().toLocaleDateString()">
 
-						<input type="text" placeholder="Имя и фамилия" name="name">
-						<input type="text" placeholder="Номер телефона" name="phone">
-						<select name="course">
-							<option value="Программирование">Программирование</option>
-							<option value="Дизайн">Дизайн</option>
-							<option value="Маркетинг">Маркетинг</option>
-						</select>
-						<button>Записаться</button>
+						<input type="text" :placeholder="$t('forms.input_name')" name="name">
+						<input type="text" :placeholder="$t('forms.input_phone')" name="phone">
+						<button>{{$t('buttons.course')}}</button>
 					</form>
 				</div>
 			</div>
@@ -31,18 +26,18 @@
 		<div class="screen-footer black">
 			<div class="margin-small"></div>
 
-			<div class="wrapper def-block-small">
+			<div class="wrapper def-block-small padding-sides">
 				<div class="top side">
 					<div class="left-side bolder">
 						<div class="row">
-							<a @click="СloseForms()" target="_blank" href="https://madad.studio">Студия Madad</a>
-							<a @click="СloseForms()" href="/#courses">Курсы</a>
-							<a @click="СloseForms()" href="/#reviews">Видеоотзывы</a>
-							<a @click="СloseForms(), OpenForm('Application')" href="#">Начать учиться</a>
-							<a @click="СloseForms()" target="_blank" href="https://t.me/weprouz_bot">Телеграм-блог</a>
-							<a @click="СloseForms()" href="/job">Работа в Wepro</a>
-							<a @click="СloseForms()" href="/test">Пройти тест</a>
-							<a @click="СloseForms()" href="/contacts">Контакты</a>
+							<a @click="СloseForms()" target="_blank" href="https://madad.studio">{{$t('links.madad')}}</a>
+							<a @click="СloseForms()" href="/#courses">{{$t('links.courses')}}</a>
+							<a :href="'/' + $i18n.locale + '/job'">{{$t('links.job')}}</a>
+							<a href="/#reviews">{{$t('links.video')}}</a>
+							<a @click="OpenForm(['Application'])">{{$t('links.start')}}</a>
+							<a target="_blank" href="https://t.me/weprouz_bot">{{$t('links.telegram')}}</a>
+							<!-- <a :href="'/' + $i18n.locale + '/test'">{{$t('links.test')}}</a> -->
+							<a :href="'/' + $i18n.locale + '/contacts'">{{$t('links.contacts')}}</a>
 						</div>
 						<div class="row">
 							<a href="#" v-for="item of AllData.Course" :key="item.key">{{ item.title }}</a>
@@ -57,8 +52,8 @@
 					</div>
 				</div>
 				<div class="bottom side">
-					<span class="note">© 2021 «Wepro | Самарканд»</span>
-					<span class="note">v5.0</span>
+					<span class="note">{{$t('footer.note')}}</span>
+					<span class="note">v5.2</span>
 				</div>
 			</div>
 

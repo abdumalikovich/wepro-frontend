@@ -1,0 +1,74 @@
+$corp: rgb(255, 125, 40);
+
+html body {
+    .halloween {
+        background-color: #000;
+        color: #fff;
+        a,
+        h1,
+        h2,
+        h3,
+        ul li,
+        b,
+        i,
+        strong,
+        button {
+            color: #fff !important;
+        }
+        .close-menu:after,
+        .close-menu:before,
+        .open-menu:after,
+        .open-menu:before {
+            background-color: #fff;
+        }
+        .header {
+            background-color: #000000a3;
+        }
+        .black,
+        .white {
+            background-color: rgb(255, 125, 40);
+            button {
+                background-color: #fff !important;
+                color: #000 !important;
+            }
+        }
+        .screen-office {
+            display: none;
+        }
+        .button,
+        button {
+            background-color: $corp;
+            background: $corp;
+            border-color: $corp;
+            box-shadow: 0 3px 12px rgb(255, 125, 40) !important;
+            &.transparent {
+                box-shadow: none !important;
+            }
+        }
+        ul li:before {
+            background-image: url("../../public/img/vector/tick-orange.png");
+        }
+        .list-3 .item,
+        .list-4 .item {
+            background-color: transparent;
+            border: 3px solid #552200;
+        }
+        .screen-faq .wrapper .item {
+            border-top: 1px solid rgba(255, 255, 255, 37%);
+        }
+        .note {
+            color: #fff;
+            opacity: 0.67;
+        }
+        .margin-line:before,
+        .right:before {
+            background-color: #3e3e3e;
+        }
+        .left .wrapper .item {
+            border-color: #3e3e3e;
+        }
+        .blue {
+            color: $corp !important;
+        }
+    }
+}

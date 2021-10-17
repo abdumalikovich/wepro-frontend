@@ -1,0 +1,82 @@
+{
+	"links": {
+		"madad": "Madad Studiyasi",
+		"courses": "Kurslar",
+		"video": "Videosharhlar",
+		"start": "O’quvni boshlash",
+		"telegram": "Telegram-blog",
+		"work": "Vacam Wepro",
+		"test": "Test",
+		"contacts": "Bog'lanish uchun",
+		"students_work": "Talabalar ishlari",
+		"teachers": "O’qituvchilar"
+	},
+	"buttons": {
+		"programm": "Kursni programmasi",
+		"video": "Biz haqimizda video ko’rish",
+		"course": "Kursga yozilish",
+		"ok": "Ro’yhatdan o’tish"
+	},
+	"forms": {
+		"input_name": "Ism va familiya",
+		"input_phone": "Telefon raqam",
+		"input_course": "Kursni tanlang"
+	},
+	"footer": {
+		"h2": "Savollar qoldimi?",
+		"p": "Biz sizga qayta qo’ng’iroq qilib, qolgan barcha savollaringizga javob beramiz.",
+		"note": "© 2021 «Wepro | Samarqand»"
+	},
+	"home": {
+		"h1": "IT bo’yicha aktual <br> kasblarga o’qitamiz",
+		"h2": "Dizayn, marketing va dasturlash.",
+		"li": [
+			"Ta’lim olish uchun zamonaviy muhit",
+			"Maksimal amaliyot va minimal nazariya",
+			"Real loyihalar ustidan ishlash",
+			"O’quvchilar uchun mahorat darslari",
+			"Video darslarga cheksiz vaqt ichida kirish huquqi"
+		],
+		"screen-courses": {
+			"h2": "Yo’nalishni tanlang"
+		},
+		"screen-form": {
+			"h2": "Kursning bepul <br> onlayn-taqdimotini oling",
+			"p": "Sizga dars taqdimoti bilan bo’lgan kursda nima kutayotganligi haqida aytib o’tilgan videoni yuboramiz"
+		},
+		"screen-reviews": {
+			"h2": "Talabalarning videosharhlari"
+		},
+		"screen-map": {
+			"h2": "O’quv markazining kartasi",
+			"p": "Bu yerda siz umumiy ko’rinish, xonalar va dam olish joylarini ko’rishingiz mumkin"
+		},
+		"screen-teachers": {
+			"h2": "Bizning o’qituvchilar"
+		},
+		"screen-questions": {
+			"h2": "Tez-tez kelib tushadigan savollar"
+		}
+	},
+	"course": {
+		"screen-one": {
+			"check": {
+				"li_1": "Oy",
+				"li_2": "Darslar"
+			},
+			"currency": "so’m/oy"
+		},
+		"screen-for-who": {
+			"h2": "Ushbu kurs kim <br> uchun mo’ljallangan? "
+		},
+		"double-screen": {
+			"h2": "Kurs jadvali",
+			"h4_teacher": "Kurs jadvali",
+			"h4_what_we_learn": "Nimaga o’rganamiz",
+			"h4_soft": "Nima bilan ishlashni o’rganamiz"
+		},
+		"screen-projects": {
+			"h2": "Qanday loyihalar ustida ishlaymiz"
+		}
+	}
+}

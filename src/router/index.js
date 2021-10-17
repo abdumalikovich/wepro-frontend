@@ -1,29 +1,15 @@
 /* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import i18n from '../i18n'
 
 Vue.use(VueRouter)
 
 const routes = [
 	{
-		name: 'home',
-		path: '/',
-		component: () => import('../components/pages/home')
-	},
-	// {
-	// 	name: 'test',
-	// 	path: '/test',
-	// 	component: () => import('../components/pages/test')
-	// },
-	{
-		name: 'course',
-		path: '/course/*',
-		component: () => import('../components/pages/course')
-	},
-	{
-		name: 'studends',
-		path: '/studends',
-		component: () => import('../components/pages/studends')
+		name: 'check_api_page',
+		path: '/check_api_page',
+		component: () => import('../components/pages/check.vue')
 	},
 	{
 		name: 'admin',
@@ -45,7 +31,6 @@ const routes = [
 		path: '/admin/login',
 		component: () => import('../components/pages/admin/login'),
 	},
-
 	{
 		path: '/admin/form/*',
 		component: () => import('../components/pages/admin/forms'),
@@ -61,6 +46,47 @@ const routes = [
 		}
 	},
 	{
+		path: '/',
+		redirect: `/${i18n.locale}`
+	},
+	{
+		path: '/test',
+		component: () => import('../components/pages/test.vue'),
+	},
+	{
+		path: '/:lang',
+		component: {
+			render(c) { return c('router-view') }
+		},
+		children: [
+			{
+				name: 'home',
+				path: '',
+				component: () => import('../components/pages/home.vue')
+			},
+			{
+				name: 'job',
+				path: 'job',
+				component: () => import('../components/pages/job.vue')
+			},
+			{
+				name: 'job_item',
+				path: 'job/*',
+				component: () => import('../components/pages/job_item.vue')
+			},
+			{
+				name: 'course',
+				path: 'course/*',
+				component: () => import('../components/pages/course.vue')
+			},
+			{
+				name: 'students',
+				path: 'students',
+				component: () => import('../components/pages/students.vue')
+			}
+		]
+	},
+	{
 		path: '/*',
 		name: 'all',
 		component: () => import('../components/pages/error')
@@ -74,59 +100,20 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	// Check for req access
-	// if(to.matched.some(record => record.meta.requiresAuth)) {
-	// 	if (localStorage.expires - new Date() / 1000 <= 0 || localStorage.getItem('jwt') == null || !localStorage.getItem('jwt') == null || localStorage.getItem('jwt') === 'undefined') {
-	// 		// False check
-	// 		next({
-	// 			path: '/login',
-	//             params: { nextUrl: to.fullPath }
-	//         })
-	// 	} else {
-	// 		// True check has jwt key
-	// 		// get unique data (email, id)
-	// 		let user = JSON.parse(localStorage.getItem('user'))
+	// let language = to.params.locale
 
-	//         if(to.matched.some(record => record.meta.is_admin)) {
-	//             if(user.is_admin == 1){
-	//                 next()
-	//             } else{
-	//                 next({ name: 'home'})
-	//             }
-	//         } else {
-	// 			next({ name: 'home'})
-	//         }
-	// 	}
-	// } else {
-	//     next()
-	// }
+	// if (!language) language = 'ru'
+
+	// i18n.locale = language
+
+	i18n.locale = 'dawdwa'
 
 	if (to.matched.some(record => record.meta.requiresAdmin)) {
-		// if (localStorage.adminExpires - new Date() / 1000 <= 0 || localStorage.getItem('adminToken') == null || !localStorage.getItem('adminToken') == null || localStorage.getItem('adminToken') === 'undefined') {
-		if (localStorage.adminExpires - new Date() / 1000 <= 0) {
-			// False check
-			window.location.replace('/admin/login')
-		} else {
-			// True check has jwt key
-			// get unique data (email, id)
-			let admin = localStorage.getItem('role')
-			// alert(admin)
-
-            // if(to.matched.some(record => record.meta.is_admin)) {
-            //     if(admin.is_admin == 1){
-            //         next()
-            //     } else{
-            //         next({ name: 'home'})
-            //     }
-            // } else {
-            //     next()
-			// }
-			// alert(localStorage.getItem('role'))
-        	next()
-		}
+			if (localStorage.expires - new Date() / 1000 > 0 && localStorage.token) next()
+			else window.location.href = '/admin/login'
 	} else {
-        next()
+		next()
 	}
-})
+}) 
 
 export default router

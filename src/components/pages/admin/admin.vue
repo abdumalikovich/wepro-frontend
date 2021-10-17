@@ -5,72 +5,10 @@
 				<h2>Заявки</h2>
 			</div>
 			<div class="wrapper list-3">
-				<router-link to="./admin/table/applications">
-					<div class="item">
-						<div class="inside">
-							<div class="title">
-								<p class="h3">Заявки на курсы</p>
-							</div>
-							
-							<ul class="check" v-if="AllData.Applications">
-								<li class="note">Новые: {{AllData.Applications.filter(item => item.status == 'new').length}}</li>
-								<li class="note">В ожидании: {{AllData.Applications.filter(item => item.status == 'wait').length}}</li>
-								<li class="note">Потерянные: {{AllData.Applications.filter(item => item.status == 'shit').length}}</li>
-								<li class="note">Закрытые: {{AllData.Applications.filter(item => item.status == 'done').length}}</li>
-								<li class="note">Корзина: {{AllData.Applications.filter(item => item.isInTrash == true).length}}</li>
-								<li class="note">Всего: {{AllData.Applications.length}}</li>
-							</ul>
-
-							<div class="sorting">
-								<button class="active">Перейти к таблице</button>
-							</div>
-						</div>
-					</div>
-				</router-link>
-				<router-link to="./admin/table/get_presentation">
-					<div class="item">
-						<div class="inside">
-							<div class="title">
-								<p class="h3">Получить презентацию курса</p>
-							</div>
-							
-							<ul class="check">
-								<li class="note">Новых: 114</li>
-								<li class="note">Закрытых: 112 сум</li>
-								<li class="note">Потеряные: 1</li>
-								<li class="note">Ожидание: 1</li>
-								<li class="note">Всего: 212</li>
-								<li class="note">Корзина: 41</li>
-							</ul>
-
-							<div class="sorting">
-								<button class="active">Перейти к таблице</button>
-							</div>
-						</div>
-					</div>
-				</router-link>
-				<router-link to="./admin/table/questions">
-					<div class="item">
-						<div class="inside">
-							<div class="title">
-								<p class="h3">Остались вопросы?</p>
-							</div>
-							
-							<ul class="check">
-								<li class="note">Новых: 114</li>
-								<li class="note">Закрытых: 112 сум</li>
-								<li class="note">Потеряные: 1</li>
-								<li class="note">Ожидание: 1</li>
-								<li class="note">Всего: 212</li>
-								<li class="note">Корзина: 41</li>
-							</ul>
-
-							<div class="sorting">
-								<button class="active">Перейти к таблице</button>
-							</div>
-						</div>
-					</div>
-				</router-link>
+				<item :data="'Applications'"/>
+				<item :data="'App_Presentations'"/>
+				<item :data="'App_Vacancies'"/>
+				<item :data="'Questions'"/>
 			</div>
 
 			<div class="margin-line"></div>
@@ -87,7 +25,7 @@
 				<div class="item" v-for="item of AllData.Course" :key="item.key">
 					<div class="inside">
 						<div class="title">
-							<p class="h3">Frontend-программирование</p>
+							<p class="h3">{{item.title}}</p>
 						</div>
 
 						<ul class="check">
@@ -97,13 +35,49 @@
 						</ul>
 
 						<div class="sorting">
-							<button>Изменение</button>
-							<button>Удаление</button>
+							<button @click="Edit(item.id)">Изменение</button>
+							<button @click="Detlet(item.id)">Удаление</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			
+			<div class="margin-line"></div>
+
+			<div class="heading">
+				<h2>Открытые вакансии</h2>
+				<div class="sorting">
+					<router-link :to="'admin/form/job'">
+						<button class="active">Добавить</button>
+					</router-link>
+				</div>
+			</div>
+			
+			<div class="margin-line"></div>
+
+			<div class="heading">
+				<h2>Работы студентов</h2>
+				<div class="sorting">
+					<router-link :to="'admin/form/student_works'">
+						<button class="active">Добавить</button>
+					</router-link>
+				</div>
+			</div>
+			<div class="wrapper list-3">
+				<!-- <div class="item" v-for="item of AllData.Teacher" :key="item.key">
+					<div class="inside">
+						<div class="title">
+							<p class="h3">{{item.name}}</p>
+						</div>
+
+						<div class="sorting">
+							<button :id="item.id">Изменение</button>
+							<button :id="item.id">Удаление</button>
+						</div>
+					</div>
+				</div> -->
+			</div>
+
 			<div class="margin-line"></div>
 
 			<div class="heading">
@@ -164,6 +138,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import item from './layouts/item.vue'
 
 export default {
 	computed: {
@@ -184,7 +159,7 @@ export default {
 		this.GetDataAdmin()
 	},
 	components: {
-
+		item
 	},
 }
 </script>

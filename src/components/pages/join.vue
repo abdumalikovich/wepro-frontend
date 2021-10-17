@@ -6,28 +6,30 @@
         <div class="wrapper">
             <div class="side-left">
                 <ul class="check horizontal">
-                    <li>{{$t('course.screen-one.check.li_1')}}: {{ FetchedItem.number_month }}</li>
-                    <li>{{$t('course.screen-one.check.li_2')}}: {{ FetchedItem.number_lessons }}</li>
+                    <li>{{$t('course.screen-one.check.li_1')}}: {{ CourseItem.number_month }}</li>
+                    <li>{{$t('course.screen-one.check.li_2')}}: {{ CourseItem.number_lessons }}</li>
                 </ul>
-                <h1 class="elements-pc">{{FetchedItem.title}}</h1>
-                <h2 v-if="FetchedItem.price">{{FetchedItem.price.slice(0, 3) + '.' + FetchedItem.price.slice(3)}} {{$t('course.screen-one.currency')}}</h2>
-                <p class="t-20">{{FetchedItem.description}}</p>
+                <h1 class="elements-pc">{{CourseItem.title}}</h1>
+                <h2 v-if="CourseItem.price">{{CourseItem.price.slice(0, 3) + '.' + CourseItem.price.slice(3)}} {{$t('course.screen-one.currency')}}</h2>
+                <p class="t-20">{{CourseItem.description}}</p>
                 <div class="btns">
-                    <button @click="OpenForm(['Application'])" class="ga-click-openApplication">{{$t('buttons.course')}}</button>
-                    <a :href="FetchedItem.yandex_url" class="ga-click-getProgramm" target="_blank">
+                    <a href="#">
+                        <button @click="OpenForm(['Application'])" class="ga-click-openApplication">{{$t('buttons.course')}}</button>
+                    </a>
+                    <a :href="CourseItem.yandex_url" class="ga-click-getProgramm" target="_blank">
                         <button class="transparent ga-click-getProgramm">{{$t('buttons.programm')}}</button>
                     </a>
                 </div>
             </div>
             <div class="side-right">
-                <iframe :src="FetchedItem.video + '?autoplay=1&mute=1&loop=1'" autoplay="1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe :src="CourseItem.video + '?autoplay=1&mute=1&loop=1'" autoplay="1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
     <div class="margin"></div>
 
-    <div class="screen-for-who def-block" v-if="FetchedItem.array_for_who">
+    <div class="screen-for-who def-block" v-if="CourseItem.array_for_who">
         <div class="heading">
             <span class="h2" v-html="$t('course.screen-for-who.h2')"></span>
         </div>
@@ -57,13 +59,13 @@
             <div class="heading">
                 <span class="h2" v-html="$t('course.double-screen.h2')">Расписание курса</span>
             </div>
-            <div class="wrapper cards cards-justify-content padding-sides" v-if="FetchedItem.unique_data">
-                <div class="item" v-for="item of FetchedItem.unique_data.array_lessons" :key="item.id">
+            <div class="wrapper cards cards-justify-content padding-sides" v-if="CourseItem.unique_data">
+                <div class="item" v-for="item of CourseItem.unique_data.array_lessons" :key="item.id">
                     <p class="text-p-heading dark">{{item.name}}</p>
                 </div>
                 <a class="pc-elements" target="_blank">                
-                    <a :href="FetchedItem.yandex_url" target="_blank" v-if="FetchedItem.unique_data">
-                        <button class="transparent bordered"><span class="note blue">Оставшиеся занятия: {{ +FetchedItem.number_lessons - FetchedItem.unique_data.array_lessons.length }}</span></button>
+                    <a :href="CourseItem.yandex_url" target="_blank" v-if="CourseItem.unique_data">
+                        <button class="transparent bordered"><span class="note blue">Оставшиеся занятия: {{ +CourseItem.number_lessons - CourseItem.unique_data.array_lessons.length }}</span></button>
                     </a>
                 </a>
             </div>
@@ -74,14 +76,14 @@
                     <span class="h4">{{$t('course.double-screen.h4_teacher')}}</span>
                 </div>
                 <div class="wrapper padding-sides">
-                    <div class="person-element" v-if="FetchedItem.teacher">
-                        <img v-if="FetchedItem.teacher.files" class="cover" :src="proxy + '/' + FetchedItem.teacher.files[0].path" alt="Преподаватель курса">
+                    <div class="person-element" v-if="CourseItem.teacher">
+                        <img v-if="CourseItem.teacher.files" class="cover" :src="proxy + '/' + CourseItem.teacher.files[0].path" alt="Преподаватель курса">
                         <div>
-                            <span class="h3">{{FetchedItem.teacher.name}}</span>
-                            <span class="note">{{FetchedItem.teacher.description}}</span>
+                            <span class="h3">{{CourseItem.teacher.name}}</span>
+                            <span class="note">{{CourseItem.teacher.description}}</span>
                         </div>
                     </div>
-                    <!-- <p>{{FetchedItem.teacher.full_description}}</p> -->
+                    <p>{{CourseItem.teacher.full_description}}</p>
                 </div>
             </div>
             <div class="margin-line"></div>
@@ -90,8 +92,8 @@
                     <span class="h4">{{$t('course.double-screen.h4_what_we_learn')}}</span>
                 </div>
                 <div class="wrapper padding-sides">
-                    <ul class="check" v-if="FetchedItem.unique_data">
-                        <li v-for="item of FetchedItem.unique_data.array_what_can" :key="item.key">{{item.name}}</li>
+                    <ul class="check" v-if="CourseItem.unique_data">
+                        <li v-for="item of CourseItem.unique_data.array_what_can" :key="item.key">{{item.name}}</li>
                     </ul>
                 </div>
             </div>
@@ -100,8 +102,8 @@
                 <div class="heading">
                     <span class="h4">{{$t('course.double-screen.h4_soft')}}</span>
                 </div>
-                <div class="wrapper padding-sides" v-if="FetchedItem.unique_data">
-                    <a :href="item.url" target="_blank" v-for="item of FetchedItem.unique_data.array_programms" :key="item.key">
+                <div class="wrapper padding-sides" v-if="CourseItem.unique_data">
+                    <a :href="item.url" target="_blank" v-for="item of CourseItem.unique_data.array_programms" :key="item.key">
                         <div class="item">
                             <img :src="item.img">
                             <div>
@@ -121,8 +123,8 @@
         <div class="heading">
             <span class="h2" v-html="$t('course.screen-projects.h2')"></span>
         </div>
-        <div class="wrapper list-3 padding-sides" v-if="FetchedItem.unique_data">
-            <div class="item img" v-for="item of FetchedItem.unique_data.array_projects" :key="item.key">
+        <div class="wrapper list-3 padding-sides" v-if="CourseItem.unique_data">
+            <div class="item img" v-for="item of CourseItem.unique_data.array_projects" :key="item.key">
                 <img :src="item.img">
                 <div class="description">
                     <span class="h3">{{item.name}}</span>
@@ -139,7 +141,7 @@
             <span class="h2" v-html="$t('students.screen-one.h1')"></span>
         </div>
         <div class="wrapper padding-sides list-3">
-            <div v-for="item of AllData.StudentsWorks.filter(item => item.course == FetchedItem.id)" :key="item.key" class="item img">
+            <div v-for="item of AllData.StudentsWorks.filter(item => item.course == CourseItem.id)" :key="item.key" class="item img">
                 <!-- <carousel :autoplay="false" class="screen-gallery" :dots="true" :nav="false" :items=1> -->
                 <img :src="proxy + '/' + item.multiple[0]"/>
                 <!-- </carousel> -->
@@ -183,7 +185,7 @@ import config from '../../../vue.config'
 export default {
     data() {
         return {
-            FetchedItem: {},
+            CourseItem: {},
 			proxy: config.devServer.proxy,
             for_who: [
                 {
@@ -235,15 +237,15 @@ export default {
 			'AllData'
 		])
 	},
-	async mounted() {
+	async created() {
 		// GET ITEM
         await api.GetCourse({ element: this.$route.params.pathMatch })
             .then(async response => {
-                this.FetchedItem = response.data
-                    document.title = 'WEPRO — ' + this.FetchedItem.title
-                    document.head.querySelector('meta[name=description]').content = this.FetchedItem.description
+                this.CourseItem = response.data
+                    document.title = 'WEPRO —' + this.CourseItem.title
+                    document.head.querySelector('meta[name=description]').content = this.CourseItem.description
 
-                for(let item of this.FetchedItem.array_for_who) {
+                for(let item of this.CourseItem.array_for_who) {
                     for(let item2 of this.for_who) {
                         if(item == item2.id) {
                             this.for_who_final.push(item2)
@@ -252,11 +254,12 @@ export default {
                 }
             })
         
-		await this.GetData(['Teacher'])
+		await this.GetData()
             .then(async response => {
+                // console.log(this.AllData.Teacher);
                 for(let item of this.AllData.Teacher) {
-                    if(item.id == this.FetchedItem.teacher) {
-                        this.FetchedItem.teacher = item
+                    if(item.id == this.CourseItem.teacher) {
+                        this.CourseItem.teacher = item
                     }
                 }
             }) .catch(async error => {
